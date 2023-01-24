@@ -1,0 +1,84 @@
+.body {
+  background-color: orangered; 
+  /* margin-top: 100px;  */
+}
+
+#top-right {
+    display: flex;
+    color: white;
+    background-color: black;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+#text {
+    display: flex;
+    justify-content: center;
+}
+
+#main {
+    display: flex;
+    justify-content: center;
+}
+
+.whole {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.box {
+    
+    margin-right: auto;
+    
+}
+
+#username {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+#password {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+#heading {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+}
+
+#bar1 {
+    width: 20rem;
+}
+
+#bar2 {
+    width: 20rem;
+}
+
+ion-icon {
+    font-size: 25px;
+}
+
+.icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    justify-content: space-evenly;
+}
+
+nav {
+    color: white;
+}
