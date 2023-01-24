@@ -1,0 +1,138 @@
+.header {
+    display: grid;
+    grid-template-columns: repeat(22, 1fr);
+    background-color: black;
+    padding-top: 5px;
+    padding-right: 50px;
+}
+
+.brand {
+
+    grid-column: 2;
+}
+
+.brand img {
+
+    grid-column: 2;
+    padding-top: 1px;
+    padding-left: 1px;
+    padding-bottom: 5px;
+    background-color: black;
+    height: 60px;
+    width: 60px;
+}
+
+.nba {
+
+    grid-column: 3;
+    padding-top: 5px;
+    padding-left: 10px;
+    background-color: black;
+}
+
+.nba img {
+    
+    height: 50px;
+    width: 35px;
+    background-color: black;
+    padding-bottom: 5px;
+}
+
+.dropdown1 {
+
+    grid-column: 4;
+    padding-top: 12px;
+}
+
+.dropdown {
+    
+    background-color: rgb(194, 14, 14); 
+    display: none;
+}
+
+.dropdown1 a {
+    text-decoration: none;
+    color:white; 
+}
+
+.dropdown1:hover .dropdown {
+    display: block;
+    width: 80px;
+
+}
+
+.dropdown2 {
+    grid-column: span 7;
+    padding-top: 12px;
+}
+
+.dropdown2 a {
+    text-decoration: none;
+    color: white;
+}
+
+.dropdown2:hover .dropdown {
+    display: block;
+    width: 80px; 
+}
+
+.dropdown3 {
+    grid-column: 7;
+    padding-top: 12px;
+}
+
+.dropdown3 a {
+    text-decoration: none;
+    color:white; 
+}
+
+.dropdown3:hover .dropdown {
+    display: block;
+    width: 80px;
+}
+
+.dropdown4 {
+    grid-column: 17;
+    padding-top: 12px;
+}
+
+.dropdown4 a {
+    text-decoration: none;
+    color:white; 
+}
+
+.dropdown4:hover .dropdown {
+    display: block;
+    width: 80px;
+}
+
+.home {
+    grid-column: 19;
+    text-align: center;
+    color: white;
+    padding-top: 10px;
+}
+
+.grid{
+    grid-column: 20;
+    text-align: center;
+    color: white;
+    padding-top: 10px;
+
+}
+
+.search {
+    grid-column: 21;
+    text-align: center;
+    color:white;
+    padding-top: 10px;
+
+}
+
+.profile {
+    grid-column: 22;
+    text-align: center;
+    color:white;
+    padding-top: 10px;
+
+}
