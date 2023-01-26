@@ -38,72 +38,78 @@
     padding-bottom: 5px;
 }
 
-.dropdown1 {
-
-    grid-column: 4;
-    padding-top: 12px;
-}
-
 .dropdown {
-    
-    background-color: rgb(194, 14, 14); 
+    min-width: 8em;
+    position:relative;
+    grid-column: span 4;   
+}
+
+.dropdown * {
+    box-sizing: border-box;
+}
+
+.select {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 1em;   
+}
+
+.selected {
+   
+
+}
+
+.arrow {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #fff;
+    transition: 0.3s;
+}
+
+.arrow-rotate {
+    transform: rotate(180deg);
+}
+
+.menu {
+    list-style: none;
+    padding: 0.2em 0.5em;
+    background: #323741;
+    border: 1px #363a43 solid;
+    box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
+    border-radius: 0.5em;
+    color: #9fa5b5;
+    position: absolute;
+    top: 3em;
+    left: 50%;
+    width: 400%;
+    transform: translateX(-50%);
+    opacity: 0;
     display: none;
+    transition: .02s;
+    z-index: 1;
+}
+.menu li {
+    padding: 0.7em 0.5em;
+    margin: 0.3em 0;
+    border-radius: 0.5em;
+    cursor: pointer;
 }
 
-.dropdown1 a {
-    text-decoration: none;
-    color:white; 
+.menu li:hover {
+    background: #2a2d35;
 }
 
-.dropdown1:hover .dropdown {
+.active {
+    background: #23242a;
+}
+
+.menu-open {
     display: block;
-    width: 80px;
-
-}
-
-.dropdown2 {
-    grid-column: span 7;
-    padding-top: 12px;
-}
-
-.dropdown2 a {
-    text-decoration: none;
-    color: white;
-}
-
-.dropdown2:hover .dropdown {
-    display: block;
-    width: 80px; 
-}
-
-.dropdown3 {
-    grid-column: 7;
-    padding-top: 12px;
-}
-
-.dropdown3 a {
-    text-decoration: none;
-    color:white; 
-}
-
-.dropdown3:hover .dropdown {
-    display: block;
-    width: 80px;
-}
-
-.dropdown4 {
-    grid-column: 17;
-    padding-top: 12px;
-}
-
-.dropdown4 a {
-    text-decoration: none;
-    color:white; 
-}
-
-.dropdown4:hover .dropdown {
-    display: block;
-    width: 80px;
+    opacity: 1;
 }
 
 .home {
