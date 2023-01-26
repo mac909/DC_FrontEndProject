@@ -17,31 +17,86 @@ async function getOdds() {
   )
     .then((response) => response.json())
     .then((data) => {
+      console.log();
       data.forEach((item) => {
+        eventCard = {};
+        // Check each item whether or not it is available
+        try {
+          eventCard.homeTeam = item.home_team;
+        } catch {
+          eventCard.homeTeam = undefined;
+        }
+
+        try {
+          eventCard.awayTeam = item.away_team;
+        } catch {
+          eventCard.awayTeam = undefined;
+        }
+
+        try {
+          eventCard.team1_h2h = item.bookmakers[0].markets[0].outcomes[0];
+        } catch {
+          eventCard.team1_h2h = undefined;
+        }
+
+        try {
+          eventCard.team2_h2h = item.bookmakers[0].markets[0].outcomes[1];
+        } catch {
+          eventCard.team2_h2h = undefined;
+        }
+
+        try {
+          eventCard.team1_spreads = item.bookmakers[0].markets[1].outcomes[0];
+        } catch {
+          eventCard.team1_spreads = undefined;
+        }
+
+        try {
+          eventCard.team2_spreads = item.bookmakers[0].markets[1].outcomes[1];
+        } catch {
+          eventCard.team2_spreads = undefined;
+        }
+
+        try {
+          eventCard.overOdds = item.bookmakers[0].markets[2].outcomes[0];
+        } catch {
+          eventCard.overOdds = undefined;
+        }
+
+        try {
+          eventCard.underOdds = item.bookmakers[0].markets[2].outcomes[1];
+        } catch {
+          eventCard.underOdds = undefined;
+        }
+
+        try {
+          eventCard.overUnderVal =
+            item.bookmakers[0].markets[2].outcomes[0].point;
+        } catch {
+          eventCard.overUnderVal = undefined;
+        }
+
         // Object to stores all information to go into the eventCard
-        eventCard = {
-          homeTeam: item.home_team,
-          awayTeam: item.away_team,
-          team1_h2h: item.bookmakers[1].markets[0].outcomes[0],
-          team2_h2h: item.bookmakers[1].markets[0].outcomes[1],
-          team1_spreads: item.bookmakers[1].markets[1].outcomes[0],
-          team2_spreads: item.bookmakers[1].markets[1].outcomes[1],
-          overOdds: item.bookmakers[1].markets[2].outcomes[0],
-          underOdds: item.bookmakers[1].markets[2].outcomes[1],
-          overUnderVal: item.bookmakers[1].markets[2].outcomes[0].point,
-        };
+        // eventCard = {
+        //   homeTeam: item.home_team,
+        //   awayTeam: item.away_team,
+        //   team1_h2h: item.bookmakers[1].markets[0].outcomes[0],
+        //   team2_h2h: item.bookmakers[1].markets[0].outcomes[1],
+        //   team1_spreads: item.bookmakers[1].markets[1].outcomes[0],
+        //   team2_spreads: item.bookmakers[1].markets[1].outcomes[1],
+        //   overOdds: item.bookmakers[1].markets[2].outcomes[0],
+        //   underOdds: item.bookmakers[1].markets[2].outcomes[1]
+        // };
         events.push(eventCard);
       });
     })
-    .catch((err) => {
-      console.error(err);
-    });
+    .catch((err) => console.error(err));
   console.log(events);
   return events;
 }
 
 async function createCards() {
-  let events = getOdds();
+  let events = await getOdds();
 
   for (i = 0; i < events.length; i++) {
     // Container to hold within 1 card
@@ -89,9 +144,17 @@ async function createCards() {
     let spreadTab = document.createElement("button");
     let overUnderTab = document.createElement("button");
 
-    // Create unique IDs for each h2h and h2h tab content box
+    // Create unique IDs for each h2h and h2h tab content boxes
     let h2hId = "h2h_" + i;
     let h2hTabID = "openOdds(event,'" + h2hId + "')";
+
+    // Create unique IDs for each of the spreads and spread content boxes
+    let spreadId = "spread_" + i;
+    let spreadTabId = "openOdds(event,'" + spreadId + "')";
+
+    // Create unique IDs for each of the spreads and spread content boxes
+    let overUnderId = "overUnder_" + i;
+    let overUnderTabId = "openOdds(event,'" + overUnderId + "')";
 
     // Assign attributes to the above created elements
     tabContainer.setAttribute("class", "tab");
@@ -102,12 +165,12 @@ async function createCards() {
     }
     with (spreadTab) {
       setAttribute("class", "tablinks");
-      setAttribute("onclick", "openOdds(event,'spread')");
+      setAttribute("onclick", spreadTabId);
       innerHTML = "Spread";
     }
     with (overUnderTab) {
       setAttribute("class", "tablinks");
-      setAttribute("onclick", "openOdds(event,'overUnder')");
+      setAttribute("onclick", overUnderTabId);
       innerHTML = "Over/Under";
     }
     // Append Tabs to the card
@@ -118,7 +181,8 @@ async function createCards() {
     }
     eventContainer.appendChild(tabContainer);
 
-    // Create elements for tab content
+    // ===========================================================
+    // Create elements for h2h tab content
     let h2hContent = document.createElement("div");
     let h2htable = document.createElement("table");
 
@@ -138,21 +202,164 @@ async function createCards() {
     let column_1 = tableHeader.insertCell(0);
     let column_2 = tableHeader.insertCell(1);
     column_1.innerHTML = "Team";
-    column_2.innerHTML = "odds";
+    column_2.innerHTML = "Odds";
 
     // Populate Row 1 of h2h
     let h2hRow_1 = h2htable.insertRow(1);
     let h2hRow1col_1 = h2hRow_1.insertCell(0);
     let h2hRow1col_2 = h2hRow_1.insertCell(1);
-    h2hRow1col_1.innerHTML = eventCard.team1_h2h.name;
-    h2hRow1col_2.innerHTML = eventCard.team1_h2h.price;
+    h2hRow1col_1.innerHTML = events[i].team1_h2h.name;
 
     // Populate Row 2 of h2h
     let h2hRow_2 = h2htable.insertRow(2);
     let h2hRow2col_1 = h2hRow_2.insertCell(0);
     let h2hRow2col_2 = h2hRow_2.insertCell(1);
-    h2hRow2col_1.innerHTML = eventCard.team2_h2h.name;
-    h2hRow2col_2.innerHTML = eventCard.team2_h2h.price;
+    // Create Btn to pull up modal calculator
+    let row_1Btn = document.createElement("button");
+    let row_2Btn = document.createElement("button");
+    // Assign attributes to the buttons
+    with (row_1Btn) {
+      setAttribute("style", "button");
+      setAttribute("class", "btn btn-light");
+    }
+    with (row_2Btn) {
+      setAttribute("style", "button");
+      setAttribute("class", "btn btn-light");
+    }
+    // Append btn to the table in the HTML
+    h2hRow2col_1.innerHTML = events[i].team2_h2h.name;
+    row_1Btn.innerHTML = events[i].team1_h2h.price;
+    row_2Btn.innerHTML = events[i].team2_h2h.price;
+    h2hRow1col_2.appendChild(row_1Btn);
+    h2hRow2col_2.appendChild(row_2Btn);
+
+    // Move team name to center alignment
+    h2hRow1col_1.setAttribute("style", "vertical-align: middle");
+    h2hRow2col_1.setAttribute("style", "vertical-align: middle");
+    column_1.setAttribute("style", "vertical-align: middle");
+    column_2.setAttribute("style", "vertical-align: middle");
+
+    // =========================================================
+    // Create spread tab content
+    let spreadContent = document.createElement("div");
+    let spreadTable = document.createElement("table");
+
+    // Assign attributes to spread tab content
+    with (spreadContent) {
+      setAttribute("id", spreadId);
+      setAttribute("class", "tabcontent");
+    }
+    spreadTable.setAttribute("class", "table");
+
+    // Append spread content tabs to each event container
+    spreadContent.appendChild(spreadTable);
+    eventContainer.appendChild(spreadContent);
+
+    // Setup spread table header
+    let spreadHeaderRow = spreadTable.insertRow(0);
+    let spreadCol_1 = spreadHeaderRow.insertCell(0);
+    let spreadCol_2 = spreadHeaderRow.insertCell(1);
+    spreadCol_1.innerHTML = "Team";
+    spreadCol_2.innerHTML = "Odds";
+
+    // Setup spread row 1
+    let spreadRow_1 = spreadTable.insertRow(1);
+    let spreadRow_1_col1 = spreadRow_1.insertCell(0);
+    let spreadRow_1_col2 = spreadRow_1.insertCell(1);
+    spreadRow_1_col1.innerHTML =
+      events[i].team2_spreads.name + " (" + events[i].team2_spreads.point + ")";
+
+    // Setup spread row 2
+    let spreadRow_2 = spreadTable.insertRow(1);
+    let spreadRow_2_col1 = spreadRow_2.insertCell(0);
+    let spreadRow_2_col2 = spreadRow_2.insertCell(1);
+    spreadRow_2_col1.innerHTML =
+      events[i].team1_spreads.name + " (" + events[i].team1_spreads.point + ")";
+
+    // Create button for spread odds
+    let spreadBtnRow_1 = document.createElement("button");
+    let spreadBtnRow_2 = document.createElement("button");
+    // Assign attributes to the buttons
+    with (spreadBtnRow_1) {
+      setAttribute("style", "button");
+      setAttribute("class", "btn btn-light");
+      innerHTML = events[i].team1_spreads.price;
+    }
+    with (spreadBtnRow_2) {
+      setAttribute("style", "button");
+      setAttribute("class", "btn btn-light");
+      innerHTML = events[i].team2_spreads.price;
+    }
+
+    // Append btn to the spread table
+    spreadRow_1_col2.appendChild(spreadBtnRow_1);
+    spreadRow_2_col2.appendChild(spreadBtnRow_2);
+
+    // Move team name to center alignment
+    spreadRow_1_col1.setAttribute("style", "vertical-align: middle");
+    spreadRow_2_col1.setAttribute("style", "vertical-align: middle");
+    spreadCol_1.setAttribute("style", "vertical-align: middle");
+    spreadCol_2.setAttribute("style", "vertical-align: middle");
+
+    // ==================================================================
+    // Create over under tab content
+    let overUnderContent = document.createElement("div");
+    let overUnderTable = document.createElement("table");
+
+    // Assign attributes to spread tab content
+    with (overUnderContent) {
+      setAttribute("id", overUnderId);
+      setAttribute("class", "tabcontent");
+    }
+    overUnderTable.setAttribute("class", "table");
+
+    // Append spread content tabs to each event container
+    overUnderContent.appendChild(overUnderTable);
+    eventContainer.appendChild(overUnderContent);
+
+    // Setup spread table header
+    let overUnderHeaderRow = overUnderTable.insertRow(0);
+    let overUnderCol_1 = overUnderHeaderRow.insertCell(0);
+    let overUnderCol_2 = overUnderHeaderRow.insertCell(1);
+    overUnderCol_1.innerHTML = "Total Points";
+    overUnderCol_2.innerHTML = "Odds";
+
+    // Setup spread row 1
+    let overUnderRow_1 = overUnderTable.insertRow(1);
+    let overUnderRow_1_col1 = overUnderRow_1.insertCell(0);
+    let overUnderRow_1_col2 = overUnderRow_1.insertCell(1);
+    overUnderRow_1_col1.innerHTML = "Over (" + events[i].overOdds.point + ")";
+
+    // Setup spread row 2
+    let overUnderRow_2 = overUnderTable.insertRow(1);
+    let overUnderRow_2_col1 = overUnderRow_2.insertCell(0);
+    let overUnderRow_2_col2 = overUnderRow_2.insertCell(1);
+    overUnderRow_2_col1.innerHTML = "Under (" + events[i].underOdds.point + ")";
+
+    // Create button for spread odds
+    let overUnderBtnRow_1 = document.createElement("button");
+    let overUnderBtnRow_2 = document.createElement("button");
+    // Assign attributes to the buttons
+    with (overUnderBtnRow_1) {
+      setAttribute("style", "button");
+      setAttribute("class", "btn btn-light");
+      innerHTML = events[i].overOdds.price;
+    }
+    with (overUnderBtnRow_2) {
+      setAttribute("style", "button");
+      setAttribute("class", "btn btn-light");
+      innerHTML = events[i].underOdds.price;
+    }
+
+    // Append btn to the spread table
+    overUnderRow_1_col2.appendChild(overUnderBtnRow_1);
+    overUnderRow_2_col2.appendChild(overUnderBtnRow_2);
+
+    // Move team name to center alignment
+    overUnderCol_1.setAttribute("style", "vertical-align: middle");
+    overUnderCol_2.setAttribute("style", "vertical-align: middle");
+    overUnderRow_1_col1.setAttribute("style", "vertical-align: middle");
+    overUnderRow_2_col1.setAttribute("style", "vertical-align: middle");
   }
 }
 
