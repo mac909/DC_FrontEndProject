@@ -72,6 +72,10 @@ ion-icon {
     font-size: 25px;
 }
 
+.icon {
+    color: white;
+}
+
 .icons {
     display: flex;
     justify-content: center;
@@ -80,5 +84,46 @@ ion-icon {
 }
 
 nav {
+    color: white;
+}
+
+#footer {
+    margin-top: 200px;
+    
+}
+
+#bottom-nav {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    
+}
+
+.link-one {
+    position: relative;
+    left: 300px;
+    text-decoration: none;
+    color: white;
+}
+
+.link-two {
+    position: relative;
+    left: 160px;
+    text-decoration: none;
+    color: white;
+}
+
+.link-three {
+    position: relative;
+    right: 170px;
+    text-decoration: none;
+    color: white;
+}
+
+.link-four {
+    position: relative;
+    right: 300px;
+    text-decoration: none;
     color: white;
 }
