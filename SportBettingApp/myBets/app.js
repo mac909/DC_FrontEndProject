@@ -17,63 +17,52 @@ async function getOdds() {
   )
     .then((response) => response.json())
     .then((data) => {
-      console.log();
       data.forEach((item) => {
         eventCard = {};
         // Check each item whether or not it is available
-        try {
-          eventCard.homeTeam = item.home_team;
-        } catch {
-          eventCard.homeTeam = undefined;
+        eventCard.homeTeam = item.home_team;
+        eventCard.awayTeam = item.away_team;
+        let book = item.bookmakers;
+        for (i in book) {
+          let bookMarket = item.bookmakers[i].markets;
+          if (bookMarket.length == 3) {
+            eventCard.team1_h2h = item.bookmakers[i].markets[0].outcomes[0];
+          }
         }
 
-        try {
-          eventCard.awayTeam = item.away_team;
-        } catch {
-          eventCard.awayTeam = undefined;
+        for (i in book) {
+          let bookMarket = item.bookmakers[i].markets;
+          if (bookMarket.length == 3) {
+            eventCard.team2_h2h = item.bookmakers[i].markets[0].outcomes[1];
+          }
         }
 
-        try {
-          eventCard.team1_h2h = item.bookmakers[1].markets[0].outcomes[0];
-        } catch {
-          eventCard.team1_h2h = undefined;
+        for (i in book) {
+          let bookMarket = item.bookmakers[i].markets;
+          if (bookMarket.length == 3) {
+            eventCard.team1_spreads = item.bookmakers[i].markets[1].outcomes[0];
+          }
         }
 
-        try {
-          eventCard.team2_h2h = item.bookmakers[1].markets[0].outcomes[1];
-        } catch {
-          eventCard.team2_h2h = undefined;
+        for (i in book) {
+          let bookMarket = item.bookmakers[i].markets;
+          if (bookMarket.length == 3) {
+            eventCard.team2_spreads = item.bookmakers[i].markets[1].outcomes[1];
+          }
         }
 
-        try {
-          eventCard.team1_spreads = item.bookmakers[1].markets[1].outcomes[0];
-        } catch {
-          eventCard.team1_spreads = undefined;
+        for (i in book) {
+          let bookMarket = item.bookmakers[i].markets;
+          if (bookMarket.length == 3) {
+            eventCard.overOdds = item.bookmakers[i].markets[2].outcomes[0];
+          }
         }
 
-        try {
-          eventCard.team2_spreads = item.bookmakers[1].markets[1].outcomes[1];
-        } catch {
-          eventCard.team2_spreads = undefined;
-        }
-
-        try {
-          eventCard.overOdds = item.bookmakers[1].markets[2].outcomes[0];
-        } catch {
-          eventCard.overOdds = undefined;
-        }
-
-        try {
-          eventCard.underOdds = item.bookmakers[1].markets[2].outcomes[1];
-        } catch {
-          eventCard.underOdds = undefined;
-        }
-
-        try {
-          eventCard.overUnderVal =
-            item.bookmakers[1].markets[2].outcomes[0].point;
-        } catch {
-          eventCard.overUnderVal = undefined;
+        for (i in book) {
+          let bookMarket = item.bookmakers[i].markets;
+          if (bookMarket.length == 3) {
+            eventCard.underOdds = item.bookmakers[i].markets[2].outcomes[1];
+          }
         }
 
         // Object to stores all information to go into the eventCard
@@ -87,11 +76,13 @@ async function getOdds() {
         //   overOdds: item.bookmakers[1].markets[2].outcomes[0],
         //   underOdds: item.bookmakers[1].markets[2].outcomes[1]
         // };
-        events.push(eventCard);
+        if (Object.keys(eventCard).length > 7) {
+          events.push(eventCard);
+        }
       });
     })
     .catch((err) => console.error(err));
-  console.log(events);
+  // console.log(events);
   return events;
 }
 
@@ -479,3 +470,4 @@ function clearInputs() {
 }
 
 createCards();
+// getOdds();
