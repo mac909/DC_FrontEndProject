@@ -34,44 +34,44 @@ async function getOdds() {
         }
 
         try {
-          eventCard.team1_h2h = item.bookmakers[0].markets[0].outcomes[0];
+          eventCard.team1_h2h = item.bookmakers[1].markets[0].outcomes[0];
         } catch {
           eventCard.team1_h2h = undefined;
         }
 
         try {
-          eventCard.team2_h2h = item.bookmakers[0].markets[0].outcomes[1];
+          eventCard.team2_h2h = item.bookmakers[1].markets[0].outcomes[1];
         } catch {
           eventCard.team2_h2h = undefined;
         }
 
         try {
-          eventCard.team1_spreads = item.bookmakers[0].markets[1].outcomes[0];
+          eventCard.team1_spreads = item.bookmakers[1].markets[1].outcomes[0];
         } catch {
           eventCard.team1_spreads = undefined;
         }
 
         try {
-          eventCard.team2_spreads = item.bookmakers[0].markets[1].outcomes[1];
+          eventCard.team2_spreads = item.bookmakers[1].markets[1].outcomes[1];
         } catch {
           eventCard.team2_spreads = undefined;
         }
 
         try {
-          eventCard.overOdds = item.bookmakers[0].markets[2].outcomes[0];
+          eventCard.overOdds = item.bookmakers[1].markets[2].outcomes[0];
         } catch {
           eventCard.overOdds = undefined;
         }
 
         try {
-          eventCard.underOdds = item.bookmakers[0].markets[2].outcomes[1];
+          eventCard.underOdds = item.bookmakers[1].markets[2].outcomes[1];
         } catch {
           eventCard.underOdds = undefined;
         }
 
         try {
           eventCard.overUnderVal =
-            item.bookmakers[0].markets[2].outcomes[0].point;
+            item.bookmakers[1].markets[2].outcomes[0].point;
         } catch {
           eventCard.overUnderVal = undefined;
         }
@@ -146,14 +146,20 @@ async function createCards() {
 
     // Create unique IDs for each h2h and h2h tab content boxes
     let h2hId = "h2h_" + i;
+    let h2hBtnId_1 = "h2hBtn_1_" + i;
+    let h2hBtnId_2 = "h2hBtn_2_" + i;
     let h2hTabID = "openOdds(event,'" + h2hId + "')";
 
     // Create unique IDs for each of the spreads and spread content boxes
     let spreadId = "spread_" + i;
+    let spreadBtnId_1 = "spreadBtn_1_" + i;
+    let spreadBtnId_2 = "spreadBtn_2_" + i;
     let spreadTabId = "openOdds(event,'" + spreadId + "')";
 
     // Create unique IDs for each of the spreads and spread content boxes
     let overUnderId = "overUnder_" + i;
+    let overUnderBtnId_1 = "overUnderBtn_1_" + i;
+    let overUnderBtnId_2 = "overUnderBtn_2_" + i;
     let overUnderTabId = "openOdds(event,'" + overUnderId + "')";
 
     // Assign attributes to the above created elements
@@ -221,10 +227,14 @@ async function createCards() {
     with (row_1Btn) {
       setAttribute("style", "button");
       setAttribute("class", "btn btn-light");
+      setAttribute("id", h2hBtnId_1);
+      setAttribute("onclick", "openCalc(this.id)");
     }
     with (row_2Btn) {
       setAttribute("style", "button");
       setAttribute("class", "btn btn-light");
+      setAttribute("id", h2hBtnId_2);
+      setAttribute("onclick", "openCalc(this.id)");
     }
     // Append btn to the table in the HTML
     h2hRow2col_1.innerHTML = events[i].team2_h2h.name;
@@ -283,11 +293,15 @@ async function createCards() {
     with (spreadBtnRow_1) {
       setAttribute("style", "button");
       setAttribute("class", "btn btn-light");
+      setAttribute("id", spreadBtnId_1);
+      setAttribute("onclick", "openCalc(this.id)");
       innerHTML = events[i].team1_spreads.price;
     }
     with (spreadBtnRow_2) {
       setAttribute("style", "button");
       setAttribute("class", "btn btn-light");
+      setAttribute("id", spreadBtnId_2);
+      setAttribute("onclick", "openCalc(this.id)");
       innerHTML = events[i].team2_spreads.price;
     }
 
@@ -343,11 +357,15 @@ async function createCards() {
     with (overUnderBtnRow_1) {
       setAttribute("style", "button");
       setAttribute("class", "btn btn-light");
+      setAttribute("id", overUnderBtnId_1);
+      setAttribute("onclick", "openCalc(this.id)");
       innerHTML = events[i].overOdds.price;
     }
     with (overUnderBtnRow_2) {
       setAttribute("style", "button");
       setAttribute("class", "btn btn-light");
+      setAttribute("id", overUnderBtnId_2);
+      setAttribute("onclick", "openCalc(this.id)");
       innerHTML = events[i].underOdds.price;
     }
 
@@ -382,6 +400,82 @@ function openOdds(evt, betting) {
   // Show the current tab, and add an "active" class to the button that opened the tab
   document.getElementById(betting).style.display = "block";
   evt.currentTarget.className += " active";
+}
+
+function openCalc(clickedOdds) {
+  // Set Odds Output
+  let elId = document.getElementById(clickedOdds);
+  let oddOutput = document.getElementById("oddsInput");
+  let amOdds = elId.innerHTML;
+  oddOutput.value = parseInt(amOdds);
+
+  // Get the modal
+  var modal = document.getElementById("myModal");
+
+  // Get the button that opens the modal
+  var btn = document.getElementById(clickedOdds);
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks on the button, open the modal
+  modal.style.display = "block";
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function () {
+    modal.style.display = "none";
+  };
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+  // clear input boxes if there was a previous entry
+  clearInputs();
+}
+
+function calcPayout() {
+  // Get Id for each input
+  let userMoney = document.getElementById("userMoney");
+  let oddsInput = document.getElementById("oddsInput");
+  let payout = document.getElementById("payout");
+  let impliedOdds = document.getElementById("impliedOdds");
+  let toWin = document.getElementById("toWin");
+
+  // Assign vars with input values
+  let bet = parseFloat(userMoney.value);
+  let betOdds = parseFloat(oddsInput.value);
+
+  // Based on whether the odds are - or + determine which calculation to use
+  if (betOdds > 0) {
+    let decimalOdds = betOdds / 100 + 1;
+    payout.value = decimalOdds * bet;
+    let impOdds = parseFloat((1 / decimalOdds) * 100).toFixed(2);
+    impliedOdds.value = parseFloat(impOdds).toFixed(2) + " %";
+    let win = decimalOdds * bet - bet;
+    toWin.value = parseFloat(win);
+  } else {
+    let decimalOdds = parseFloat(1 - 100 / betOdds).toFixed(2);
+    payout.value = decimalOdds * bet;
+    let impOdds = parseFloat((1 / decimalOdds) * 100).toFixed(2);
+    impliedOdds.value = parseFloat(impOdds).toFixed(2) + " %";
+    let win = decimalOdds * bet - bet;
+    toWin.value = parseFloat(win);
+  }
+}
+
+function clearInputs() {
+  // Get Id for each input and clear the input
+  let userMoney = document.getElementById("userMoney");
+  let payout = document.getElementById("payout");
+  let impliedOdds = document.getElementById("impliedOdds");
+  let toWin = document.getElementById("toWin");
+  userMoney.value = "";
+  payout.value = "";
+  impliedOdds.value = "";
+  toWin.value = "";
 }
 
 createCards();

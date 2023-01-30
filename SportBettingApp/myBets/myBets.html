@@ -10,8 +10,37 @@
 </head>
 <body>
     <div id="cardHolder">
-        <!-- <div class="card event">
-            <div class="eventHeader">
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <div>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Bet $</span>
+                        <input type="text" class="form-control" id="userMoney" onchange="calcPayout()">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Odds</span>
+                        <input type="text" class="form-control" readonly id="oddsInput">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Payout $</span>
+                        <input type="text" class="form-control" readonly id="payout">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">To Win $</span>
+                        <input type="text" class="form-control" readonly id="toWin">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Implied Odds</span>
+                        <input type="text" class="form-control" readonly id="impliedOdds">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="card event"> -->
+            <!-- <div class="eventHeader">
                 <img src="../assets/BostonCeltics.png" alt="">
                 <h3 style="display: flex; align-items: center; padding: 20px;">@</h3>
                 <img src="../assets/OrlandoMagic.png" alt="">
@@ -29,7 +58,7 @@
                     </tr>
                     <tr>
                         <th style="vertical-align: middle;">Los Angeles Lakers</th>
-                        <th style="display: flex; justify-content: flex-end;"><button type="button" class="btn btn-light">190</button></th>
+                        <th style="display: flex; justify-content: flex-end;"><button onclick="openCalc(this.id)" id="myBtn" type="button" class="btn btn-light">190</button></th>
                     </tr>
                     <tr>
                         <th style="vertical-align: middle;">Portland Trail Blazers</th>
@@ -37,17 +66,12 @@
                     </tr>
 
                 </table>
-            </div>
-            <div id="spread" class="tabcontent">
-                <table class="table">
-                    <tr>
-                        <th>Team</th>
-                        <th>Odds</th>
-                    </tr>
-                </table>
-            </div>
-            <div id="overUnder" class="tabcontent">
-                <p>Over/Under</p>
+                <div id="myModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <p>Some text in modal..</p>
+                    </div>
+                </div>
             </div>
         </div> -->
     </div>
