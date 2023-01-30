@@ -18,6 +18,9 @@
 
 
 //     // will i need to loop around different days to showcase the data collected?
+
+const tbody = document.getElementById("tbody")
+const tablebody = document.getElementById("tablebody")
 const options = {
     method: 'GET',
     url: 'https://odds.p.rapidapi.com/v4/sports/basketball_nba/scores',
@@ -31,33 +34,61 @@ const options = {
 fetch('https://odds.p.rapidapi.com/v4/sports/basketball_nba/scores', options)
     .then(response => response.json())
     .then((response) => {
-        console.log(response);
+        response.forEach((game) => {
+            console.log(game.home_team)
+            const trow= document.createElement("tr")
+            const tdata=document.createElement("td")
+            const tablerow = document.createElement("tr")
+            const tabledata = document.createElement("td") 
+          tabledata.innerHTML = game.home_team
+        tablerow.append(tabledata)
+          tablebody.append(tablerow)
+          
+    
+         })
+             
+        
+
+      
+
+
+     
         //console.log("inside--------------------/n" + response[0].home_team);
-        // document.getElementById("mon").innerHTML = response[0].home_team;
+         //document.getElementById("mon").innerHTML = response[0].home_team;
 
         // we going to need a fuction which loops through the json object
         //  and put data into the table data
         // we need another function to change date to days.
-        console.log("has to give us days" + getDayOfWeek(response[0].last_update));
+        console.log("has to give us days" + getDayOfWeek(response[0].dayOfWeek));
         for (var key in response) {
             if(0 === 0) {
                 console.log(key);
+            
             } 
         }
 
 
-    });
 
+    });
     function getDayOfWeek(date) {
             const dayOfWeek = new Date(date).getDay();    
             return isNaN(dayOfWeek) ? null : 
                 ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dayOfWeek];
-            }
+               
 
+
+            }
+    
+        //  .then(data =>{
+        //         const markup= `<td>${value.home_team}</td>`;
+        //     })
+        //     .cath(error =>console.log(error))
+   // document.getElementsByClassName(Team1).innerHTML=consol.log("game.home_team.away_team")
+    
 
 
 
     // getDays();
     // function getDays() {
-    //     document.getElementById("mon").innerHTML = "this is monday";
+        //document.getElementById("mon").innerHTML = "this is monday";
     // } 
