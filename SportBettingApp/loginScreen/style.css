@@ -1,0 +1,129 @@
+.body {
+  background-color: orangered; 
+  /* margin-top: 100px;  */
+}
+
+#top-right {
+    display: flex;
+    color: white;
+    background-color: black;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+#text {
+    display: flex;
+    justify-content: center;
+}
+
+#main {
+    display: flex;
+    justify-content: center;
+}
+
+.whole {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.box {
+    
+    margin-right: auto;
+    
+}
+
+#username {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+#password {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+#heading {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+}
+
+#bar1 {
+    width: 20rem;
+}
+
+#bar2 {
+    width: 20rem;
+}
+
+ion-icon {
+    font-size: 25px;
+}
+
+.icon {
+    color: white;
+}
+
+.icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    justify-content: space-evenly;
+}
+
+nav {
+    color: white;
+}
+
+#footer {
+    margin-top: 200px;
+    
+}
+
+#bottom-nav {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    
+}
+
+.link-one {
+    position: relative;
+    left: 300px;
+    text-decoration: none;
+    color: white;
+}
+
+.link-two {
+    position: relative;
+    left: 160px;
+    text-decoration: none;
+    color: white;
+}
+
+.link-three {
+    position: relative;
+    right: 170px;
+    text-decoration: none;
+    color: white;
+}
+
+.link-four {
+    position: relative;
+    right: 300px;
+    text-decoration: none;
+    color: white;
+}
