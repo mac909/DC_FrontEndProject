@@ -36,13 +36,11 @@ fetch('https://odds.p.rapidapi.com/v4/sports/basketball_nba/scores', options)
     .then((response) => {
         response.forEach((game) => {
             console.log(game.home_team)
-            const trow= document.createElement("tr")
-            const tdata=document.createElement("td")
             const tablerow = document.createElement("tr")
             const tabledata = document.createElement("td") 
-          tabledata.innerHTML = game.home_team
-        tablerow.append(tabledata)
-          tablebody.append(tablerow)
+            tabledata.innerHTML = game.home_team
+            tablerow.append(tabledata)
+            tablebody.append(tablerow)
           
     
          })
