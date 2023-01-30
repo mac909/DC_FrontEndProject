@@ -82,7 +82,7 @@ async function getOdds() {
       });
     })
     .catch((err) => console.error(err));
-  // console.log(events);
+  console.log(events);
   return events;
 }
 
