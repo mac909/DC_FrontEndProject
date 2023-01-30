@@ -1,0 +1,232 @@
+body {
+
+    background-color:white;
+    text-align: center;
+    background-image: url(../homepage/assests/Inner\ Circle2.jpg);
+    background-repeat: no-repeat;
+    background-size: 400px 400px;
+    background-position: center;
+ 
+}
+
+/* .header {
+
+    background-color: white;
+} */
+
+.container {
+
+    display: grid;
+    grid-template-columns: 2 repeat(1fr);
+    gap: 20px;
+    grid-column: 1 span 3;
+    text-align: center;
+    justify-items: center;
+}
+ 
+body a {
+
+    text-decoration: none;
+    color: black;
+    grid-column: 1;
+    
+}
+
+a {
+
+    font-size: 16px;
+    font-family: system-ui;
+    font-weight: bold;
+    font-weight: 600;
+    outline: none;
+    background: white;
+    cursor: pointer;
+    
+}
+
+body lsm {
+
+    color:black;
+    grid-column: 1 span 3;
+    font-size:60px;
+    
+}
+
+.logo img {
+
+    height: 50px;
+    width: 50px;
+}
+
+.lucas img {
+
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    box-shadow: 
+        0 0 10px black,
+        0 0 20px black;
+
+}
+
+.lucas {
+    
+    position: relative;
+    justify-content: center;
+    background-color: #263645;
+    color: #5f899f;
+    grid-column: 2;
+    grid-row: 1;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    width: 400px;
+    height:600px;
+    text-align: center;  
+}
+
+.lucas:after {
+
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: #fff;
+    z-index: -2;
+    filter:blur(40px);
+
+}
+
+.lucas:before,
+.lucas:after {
+
+    background: linear-gradient(135deg,black,black,black);
+}
+
+.mason img {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    box-shadow: 
+        0 0 10px black,
+        0 0 20px black;
+}
+
+.mason {
+    position: relative;
+    justify-content: center;
+    background-color: #263645;
+    color: #5f899f;
+    grid-column: 1;
+    grid-row: 1;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    width: 400px;
+    height:600px;
+    text-align: center;
+}
+
+.mason:after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: #fff;
+    z-index: -2;
+    filter:blur(40px);
+}
+
+.mason:before,
+.mason:after {
+
+    background: linear-gradient(135deg,black,black,black);
+
+}
+
+.twalib img {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    height: 180px;
+    box-shadow: 
+    0 0 10px black,
+    0 0 20px black;
+}
+
+.twalib {
+    position: relative;
+    justify-content: center;
+    background-color: #263645;
+    color: #5f899f;
+    grid-column: 1;
+    grid-row: 2;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    width: 400px;
+    height:600px;
+    text-align: center;
+}
+
+.twalib:after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: #fff;
+    z-index: -2;
+    filter:blur(40px);
+}
+
+.twalib:before,
+.twalib:after {
+    background: linear-gradient(135deg,black,black,black);
+}
+
+.jorge {
+    position: relative;
+    justify-content: center;
+    background-color: #263645;
+    color: #5f899f;
+    grid-column: 2;
+    grid-row: 2;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    width: 400px;
+    height:600px;
+    text-align: center;
+}
+
+.jorge:after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: #fff;
+    z-index: -2;
+    filter:blur(40px);
+}
+
+.jorge:before,
+.jorge:after {
+
+    background: linear-gradient(135deg,black,black,black);
+
+}
