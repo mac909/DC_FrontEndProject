@@ -19,8 +19,6 @@
 
 //     // will i need to loop around different days to showcase the data collected?
 
-const tbody = document.getElementById("tbody")
-const tablebody = document.getElementById("tablebody")
 const options = {
     method: 'GET',
     url: 'https://odds.p.rapidapi.com/v4/sports/basketball_nba/scores',
@@ -35,15 +33,17 @@ fetch('https://odds.p.rapidapi.com/v4/sports/basketball_nba/scores', options)
     .then(response => response.json())
     .then((response) => {
         response.forEach((game) => {
-            console.log(game.home_team)
-            const trow= document.createElement("tr")
-            const tdata=document.createElement("td")
-            const tablerow = document.createElement("tr")
-            const tabledata = document.createElement("td") 
-          tabledata.innerHTML = game.home_team
-        tablerow.append(tabledata)
-          tablebody.append(tablerow)
+            //  console.log(game.away_team)
+            const row = document.createElement("tr")
+            const table= document.getElementById("tablebody")
+            table.append(row)
           
+             const markup = `
+            <td>${game.home_team}</td>
+            <td>${game.away_team}</td>
+            <td>${getDayOfWeek(game.commence_time)}</td>`
+         
+          row.innerHTML=markup
     
          })
              
