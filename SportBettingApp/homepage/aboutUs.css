@@ -15,9 +15,8 @@ body {
     padding-right: 50px;
     color: black;
     height: 56px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #5f899f;
+    border-bottom: 2px solid #5f899f;
+    
 
 }
 
@@ -41,11 +40,14 @@ body {
     grid-column: 3;
     color: black;
     padding-top: 15px;
+    display: grid;
+    justify-content: start;
 }
 
 .liveScores a {
     text-decoration: none;
     color:black;
+    padding-right: 10px;
 }
 
 .myBets {
@@ -54,6 +56,9 @@ body {
     grid-column: 4;
     color:black;
     padding-top: 15px;
+    display: grid;
+    justify-content: start;
+    
 }
 
 .mybets a {
@@ -75,14 +80,17 @@ body {
     grid-column: span 6;
 }
 
-
-
 .dropdown {
     min-width: 8em;
     position:relative;
     grid-column: 19;
     text-align: center;
     color: white;
+    display:grid;
+    justify-content: end;
+    align-content: start;
+    padding-top: 10px;
+    padding-right: 10px;
 
 }
 
@@ -95,11 +103,13 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5em;
-    padding: 1em;   
+    padding: 1em;
+    padding-top: 10px;
 }
 
 .selected {
     color:black;
+    
 }
 
 .grid{
@@ -123,12 +133,6 @@ body {
     padding-top: 10px;
 }
 
-/* .title {
-
-    background-color: #5f899f;
-} */
-
-
 .container {
 
     display: grid;
@@ -147,21 +151,9 @@ body a {
     
 }
 
-a {
-
-    font-size: 16px;
-    font-family: system-ui;
-    font-weight: bold;
-    font-weight: 600;
-    outline: none;
-    background: white;
-    cursor: pointer;
-    
-}
-
 body lsm {
 
-    color:white;
+    color:black;
     grid-column: 1 span 3;
     font-size:60px;
     
