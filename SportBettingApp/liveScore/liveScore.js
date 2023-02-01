@@ -22,7 +22,7 @@
 const options = {
     method: 'GET',
     url: 'https://odds.p.rapidapi.com/v4/sports/basketball_nba/scores',
-    params: {daysFrom: '1'},
+    params: {daysFrom: '3'},
     headers: {
     'X-RapidAPI-Key': 'c2e100179emshee202f59bef416fp1d6359jsn6c971475cebe',
     'X-RapidAPI-Host': 'odds.p.rapidapi.com'
@@ -41,7 +41,8 @@ fetch('https://odds.p.rapidapi.com/v4/sports/basketball_nba/scores', options)
              const markup = `
             <td>${game.home_team}</td>
             <td>${game.away_team}</td>
-            <td>${getDayOfWeek(game.commence_time)}</td>`
+            <td>${getDayOfWeek(game.commence_time)}</td>
+            <td>${game.score}</td>`
          
           row.innerHTML=markup
     
