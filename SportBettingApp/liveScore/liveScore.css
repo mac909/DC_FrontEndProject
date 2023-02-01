@@ -67,73 +67,27 @@
   }
   
   .aboutUs a {
-  
     text-decoration: none;
     color: white;
     grid-column: span 4;
-    
-    
-  
   }
   
-  .dropdown {
-    min-width: 8em;
-    position:relative;
-    grid-column: 19;
-    text-align: center;
-    color: white;
-    padding-bottom: 30px;  
-  }
+.dropdown {
+  min-width: 8em;
+  position:relative;
+  grid-column: 19;
+  text-align: center;
+  color: white;
+  display:grid;
+  justify-content: end;
+  align-content: start;
+  padding-top: 10px;
+  padding-right: 10px;
+
+}
   
   .dropdown * {
     box-sizing: border-box;
-  }
-  
-  .select {
-    color: #fff;
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
-    padding: 1em;   
-  }
-  
-  
-  .menu {
-    list-style: none;
-    padding: 0.2em 0.5em;
-    background: #323741;
-    border: 1px #363a43 solid;
-    box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
-    border-radius: 0.5em;
-    color: #9fa5b5;
-    position: absolute;
-    top: 3em;
-    left: 50%;
-    width: 400%;
-    transform: translateX(-50%);
-    opacity: 0;
-    display: none;
-    transition: .02s;
-    z-index: 1;
-  }
-  .menu li {
-    padding: 0.7em 0.5em;
-    margin: 0.3em 0;
-    border-radius: 0.5em;
-    cursor: pointer;
-  }
-  
-  .menu li:hover {
-    background: #2a2d35;
-  }
-  
-  .active {
-    background: #23242a;
-  }
-  
-  .menu-open {
-    display: block;
-    opacity: 1;
   }
   
   .home {
@@ -174,6 +128,7 @@ grid-template-columns:row;
 word-spacing: 50px;
 padding: 8px;
 color: black;
+}
 
 .profile {
     grid-column: 22;

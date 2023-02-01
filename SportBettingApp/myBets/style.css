@@ -8,12 +8,10 @@
 }
 
 .brand {
-
   grid-column: 2;
 }
 
 .brand img {
-
   grid-column: 2;
   padding-top: 1px;
   padding-left: 1px;
@@ -24,7 +22,6 @@
 }
 
 .nba {
-
   grid-column: 3;
   padding-top: 5px;
   padding-left: 10px;
@@ -33,7 +30,6 @@
 }
 
 .nba img {
-  
   height: 50px;
   width: 35px;
   background-color: black;
@@ -61,22 +57,22 @@
 }
 
 .aboutUs a {
-
   text-decoration: none;
   color: white;
   grid-column: span 4;
-  
-  
-
 }
 
 .dropdown {
-  /* min-width: 8em;
-  position:relative; */
+  min-width: 8em;
+  position:relative;
   grid-column: 19;
   text-align: center;
   color: white;
-  padding-bottom: 30px;  
+  display:grid;
+  justify-content: end;
+  align-content: start;
+  padding-top: 10px;
+  padding-right: 10px;  
 }
 
 .dropdown * {
@@ -91,11 +87,6 @@
   padding: 1em;   
 }
 
-.selected {
- 
-
-}
-
 .arrow {
   width: 0;
   height: 0;
@@ -105,52 +96,7 @@
   transition: 0.3s;
 }
 
-.aboutUs .arrow {
 
-  display: flex;
-}
-
-.arrow-rotate {
-  transform: rotate(180deg);
-}
-
-.menu {
-  list-style: none;
-  padding: 0.2em 0.5em;
-  background: #323741;
-  border: 1px #363a43 solid;
-  box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
-  border-radius: 0.5em;
-  color: #9fa5b5;
-  position: absolute;
-  top: 3em;
-  left: 50%;
-  width: 400%;
-  transform: translateX(-50%);
-  opacity: 0;
-  display: none;
-  transition: .02s;
-  z-index: 1;
-}
-.menu li {
-  padding: 0.7em 0.5em;
-  margin: 0.3em 0;
-  border-radius: 0.5em;
-  cursor: pointer;
-}
-
-.menu li:hover {
-  background: #2a2d35;
-}
-
-.active {
-  background: #23242a;
-}
-
-.menu-open {
-  display: block;
-  opacity: 1;
-}
 
 .home {
   grid-column: 19;
