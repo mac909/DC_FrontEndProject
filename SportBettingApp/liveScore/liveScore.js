@@ -37,14 +37,21 @@ fetch('https://odds.p.rapidapi.com/v4/sports/basketball_nba/scores', options)
             const row = document.createElement("tr")
             const table= document.getElementById("tablebody")
             table.append(row)
+        
+            const  homeTeam = game.home_team.replace(/\s/g, "");
+            const awayTeam = game.away_team.replace(/\s/g, "");
+            let homeTeamLink = `../assets/${homeTeam}.png`;
+            let awayTeamLink = "../assets/" + awayTeam + ".png";
+          
           
              const markup = `
-            <td>${game.home_team}</td>
-            <td>${game.away_team}</td>
+            <td>${game.home_team}<img class="hometeamimg" src="${homeTeamLink}"></td>
+            <td>${game.away_team}<img class="awayteamimg" src="${awayTeamLink}"></td>
             <td>${getDayOfWeek(game.commence_time)}</td>
-            <td>${game.score}</td>`
+            <td>${game.scores}</td>`
          
           row.innerHTML=markup
+          console.log(game)
     
          })
              
@@ -60,13 +67,13 @@ fetch('https://odds.p.rapidapi.com/v4/sports/basketball_nba/scores', options)
         // we going to need a fuction which loops through the json object
         //  and put data into the table data
         // we need another function to change date to days.
-        console.log("has to give us days" + getDayOfWeek(response[0].dayOfWeek));
-        for (var key in response) {
-            if(0 === 0) {
-                console.log(key);
+        // console.log("has to give us days" + getDayOfWeek(response[0].dayOfWeek));
+        // for (var key in response) {
+        //     if(0 === 0) {
+        //         console.log(key);
             
-            } 
-        }
+        //     } 
+        // }
 
 
 
