@@ -303,6 +303,18 @@ body lsm {
     background: linear-gradient(135deg,black,black,black);
 }
 
+.jorge img {
+
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    height: 180px;
+    box-shadow: 
+    0 0 10px black,
+    0 0 20px black;
+}
+
 .jorge {
     position: relative;
     justify-content: center;
