@@ -1,3 +1,11 @@
+
+.hometeamimg, .awayteamimg{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+}
+
 .header {
     display: grid;
     grid-template-columns: repeat(22, 1fr);
@@ -136,3 +144,4 @@ color: black;
     color:white;
     padding-top: 10px;
 }
+
