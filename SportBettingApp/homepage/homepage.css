@@ -28,6 +28,12 @@
     position:relative;
     grid-column: 3;
     color: black;
+    padding-top: 15px;
+}
+
+.liveScores a {
+    text-decoration: none;
+    color:black;
 }
 
 .myBets {
@@ -35,7 +41,12 @@
     position:relative;
     grid-column: 4;
     color:black;
+    padding-top: 15px;
+}
 
+.mybets a {
+    text-decoration: none;
+    color:black;
 }
 
 .aboutUs {
@@ -51,6 +62,8 @@
     color:black;
     grid-column: span 6;
 }
+
+
 
 .dropdown {
     min-width: 8em;
@@ -74,70 +87,6 @@
 
 .selected {
     color:black;
-}
-
-.arrow {
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 6px solid #fff;
-    transition: 0.3s;
-}
-
-.aboutUs .arrow {
-    display: flex;
-}
-
-.arrow-rotate {
-    transform: rotate(180deg);
-}
-
-.menu {
-    list-style: none;
-    padding: 0.2em 0.5em;
-    background: #323741;
-    border: 1px #363a43 solid;
-    box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
-    border-radius: 0.5em;
-    color: #9fa5b5;
-    position: absolute;
-    top: 3em;
-    left: 50%;
-    width: 400%;
-    transform: translateX(-50%);
-    opacity: 0;
-    display: none;
-    transition: .02s;
-    z-index: 1;
-}
-
-.menu li {
-    padding: 0.7em 0.5em;
-    margin: 0.3em 0;
-    border-radius: 0.5em;
-    cursor: pointer;
-}
-
-.menu li:hover {
-    background: #2a2d35;
-}
-
-.active {
-    background: #23242a;
-}
-
-.menu-open {
-    display: block;
-    opacity: 1;
-}
-
-.home {
-    grid-column: 19;
-    text-align: center;
-    color: white;
-    justify-content: center;
-    padding-top: 10px;
 }
 
 .grid{
@@ -171,17 +120,19 @@
 
 .container {
     background-color: white;
-    display: grid;    
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+   
 }
 
 .logo {
-    width: 760px;
-    height: 520px;
     background-color: white;
     background-size: cover;
     display: grid;
     align-content: center;
-    justify-content: center;     
+    justify-content: center;
+   
 } 
 
 .passage2 {
@@ -189,32 +140,29 @@
     position: relative;
     background-color: rgb(198, 183, 183);
     background-size: cover;
-    width: 760px;
     grid-column: 2;
     display: grid;
     align-content: center;
-    justify-content: center;  
+    justify-content: center;
+    text-align: center;  
 }
 
 .passage3 {
     color:white;
     background-color: #263645;
     background-size: cover;
-    width: 760px;
-    height:520px;
     position: relative;
     grid-column: 1;  
     display: grid;
     align-content: center;
-    justify-content: center; 
+    justify-content: center;
+    text-align: center; 
 }
 
 .passage4 {
     position: relative;
     background-color: white;
     background-size: cover;
-    width: 760px;
-    height:520px;
     grid-column: 2;
     display: grid;
     align-content: center;
@@ -222,5 +170,5 @@
 }
 
 .passage4 img {
-  height: 400px;
+ 
 }

@@ -1,6 +1,12 @@
 .body {
-  background-color: orangered; 
-  /* margin-top: 100px;  */
+  background-color: #5f899f;
+}
+
+#logo {
+    position: relative;
+    left: 700px;
+    height: 100px;
+    width: 150px;
 }
 
 #top-right {
@@ -41,6 +47,7 @@
     display: flex;
     justify-content: center;
     margin-bottom: 15px;
+    padding: 0 100px;
 }
 
 #password {
@@ -58,10 +65,17 @@
 .button {
     display: flex;
     justify-content: center;
+    margin-top: 10px;
+    
+}
+
+#buttonclick {
+    width: 150px;
 }
 
 #bar1 {
     width: 20rem;
+    margin-bottom: 0px;
 }
 
 #bar2 {
@@ -79,7 +93,7 @@ ion-icon {
 .icons {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 30px;
     justify-content: space-evenly;
 }
 
@@ -109,21 +123,28 @@ nav {
 
 .link-two {
     position: relative;
-    left: 160px;
+    left: 220px;
     text-decoration: none;
     color: white;
 }
 
 .link-three {
     position: relative;
-    right: 170px;
+    right: 20px;
     text-decoration: none;
     color: white;
 }
 
 .link-four {
     position: relative;
-    right: 300px;
+    right: 100px;
     text-decoration: none;
     color: white;
+}
+
+.link-five {
+    position: relative;
+    text-decoration: none;
+    color: white;
+    right: 200px;
 }

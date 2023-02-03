@@ -1,4 +1,5 @@
 // Function to get betting odd for the upcoming nba games and store the desired data in an object
+
 async function getOdds() {
   // Array to store results from the fetch call
   events = [];
@@ -22,6 +23,7 @@ async function getOdds() {
         // Check each item whether or not it is available
         eventCard.homeTeam = item.home_team;
         eventCard.awayTeam = item.away_team;
+        eventCard.startDate = item.commence_time;
         let book = item.bookmakers;
         for (i in book) {
           let bookMarket = item.bookmakers[i].markets;
@@ -82,16 +84,20 @@ async function getOdds() {
       });
     })
     .catch((err) => console.error(err));
-  // console.log(events);
+  console.log(events);
   return events;
 }
 
 async function createCards() {
   let events = await getOdds();
+  let eventCount = events.length;
 
   for (i = 0; i < events.length; i++) {
     // Container to hold within 1 card
     let cardHolder = document.getElementById("cardHolder");
+
+    // Create Unique Id for each date
+    let startDateId = "startDate_" + i;
 
     // Create elements for single card
     let eventContainer = document.createElement("div");
@@ -99,6 +105,7 @@ async function createCards() {
     let eventHeader = document.createElement("div");
     let homeImage = document.createElement("img");
     let awayImage = document.createElement("img");
+    let dateTime = document.createElement("p");
 
     // Assign attributes to the above created elements
     eventHeader.setAttribute("class", "eventHeader");
@@ -111,6 +118,12 @@ async function createCards() {
       "display: flex; align-items: center; padding: 20px;"
     );
     vs.innerHTML = "@";
+    dateTime.setAttribute(
+      "style",
+      "display: flex; align-items: center; padding: 20px; justify-content: center;"
+    );
+    dateTime.setAttribute("id", startDateId);
+    dateTime.innerHTML = events[i].startDate;
 
     // Remove the space from the home and away teams and connect them to the assets folder to grab the correct team logo
     homeTeam = homeTeam.replace(/\s/g, "");
@@ -121,11 +134,10 @@ async function createCards() {
     awayImage.setAttribute("src", awayTeamLink);
 
     // Append new elements to the card
-    with (eventHeader) {
-      appendChild(homeImage);
-      appendChild(vs);
-      appendChild(awayImage);
-    }
+    eventHeader.appendChild(homeImage);
+    eventHeader.appendChild(vs);
+    eventHeader.appendChild(awayImage);
+    eventHeader.appendChild(dateTime);
     eventContainer.appendChild(eventHeader);
     cardHolder.appendChild(eventContainer);
 
@@ -155,27 +167,24 @@ async function createCards() {
 
     // Assign attributes to the above created elements
     tabContainer.setAttribute("class", "tab");
-    with (h2hTab) {
-      setAttribute("class", "tablinks");
-      setAttribute("onclick", h2hTabID);
-      innerHTML = "Moneyline";
-    }
-    with (spreadTab) {
-      setAttribute("class", "tablinks");
-      setAttribute("onclick", spreadTabId);
-      innerHTML = "Spread";
-    }
-    with (overUnderTab) {
-      setAttribute("class", "tablinks");
-      setAttribute("onclick", overUnderTabId);
-      innerHTML = "Over/Under";
-    }
+    h2hTab.setAttribute("class", "tablinks");
+    h2hTab.setAttribute("onclick", h2hTabID);
+    h2hTab.innerHTML = "Moneyline";
+
+    spreadTab.setAttribute("class", "tablinks");
+    spreadTab.setAttribute("onclick", spreadTabId);
+    spreadTab.innerHTML = "Spread";
+
+    overUnderTab.setAttribute("class", "tablinks");
+    overUnderTab.setAttribute("onclick", overUnderTabId);
+    overUnderTab.innerHTML = "Over/Under";
+
     // Append Tabs to the card
-    with (tabContainer) {
-      appendChild(h2hTab);
-      appendChild(spreadTab);
-      appendChild(overUnderTab);
-    }
+    eventContainer.appendChild(dateTime);
+    tabContainer.appendChild(h2hTab);
+    tabContainer.appendChild(spreadTab);
+    tabContainer.appendChild(overUnderTab);
+
     eventContainer.appendChild(tabContainer);
 
     // ===========================================================
@@ -184,10 +193,9 @@ async function createCards() {
     let h2htable = document.createElement("table");
 
     // Assign attributes to h2h content tab
-    with (h2hContent) {
-      setAttribute("class", "tabcontent");
-      setAttribute("id", h2hId);
-    }
+    h2hContent.setAttribute("class", "tabcontent");
+    h2hContent.setAttribute("id", h2hId);
+
     h2htable.setAttribute("class", "table");
 
     // Append content tab to the event container
@@ -215,18 +223,16 @@ async function createCards() {
     let row_1Btn = document.createElement("button");
     let row_2Btn = document.createElement("button");
     // Assign attributes to the buttons
-    with (row_1Btn) {
-      setAttribute("style", "button");
-      setAttribute("class", "btn btn-light");
-      setAttribute("id", h2hBtnId_1);
-      setAttribute("onclick", "openCalc(this.id)");
-    }
-    with (row_2Btn) {
-      setAttribute("style", "button");
-      setAttribute("class", "btn btn-light");
-      setAttribute("id", h2hBtnId_2);
-      setAttribute("onclick", "openCalc(this.id)");
-    }
+    row_1Btn.setAttribute("style", "button");
+    row_1Btn.setAttribute("class", "btn btn-light");
+    row_1Btn.setAttribute("id", h2hBtnId_1);
+    row_1Btn.setAttribute("onclick", "openCalc(this.id)");
+
+    row_2Btn.setAttribute("style", "button");
+    row_2Btn.setAttribute("class", "btn btn-light");
+    row_2Btn.setAttribute("id", h2hBtnId_2);
+    row_2Btn.setAttribute("onclick", "openCalc(this.id)");
+
     // Append btn to the table in the HTML
     h2hRow2col_1.innerHTML = events[i].team2_h2h.name;
     row_1Btn.innerHTML = events[i].team1_h2h.price;
@@ -246,10 +252,8 @@ async function createCards() {
     let spreadTable = document.createElement("table");
 
     // Assign attributes to spread tab content
-    with (spreadContent) {
-      setAttribute("id", spreadId);
-      setAttribute("class", "tabcontent");
-    }
+    spreadContent.setAttribute("id", spreadId);
+    spreadContent.setAttribute("class", "tabcontent");
     spreadTable.setAttribute("class", "table");
 
     // Append spread content tabs to each event container
@@ -281,20 +285,17 @@ async function createCards() {
     let spreadBtnRow_1 = document.createElement("button");
     let spreadBtnRow_2 = document.createElement("button");
     // Assign attributes to the buttons
-    with (spreadBtnRow_1) {
-      setAttribute("style", "button");
-      setAttribute("class", "btn btn-light");
-      setAttribute("id", spreadBtnId_1);
-      setAttribute("onclick", "openCalc(this.id)");
-      innerHTML = events[i].team1_spreads.price;
-    }
-    with (spreadBtnRow_2) {
-      setAttribute("style", "button");
-      setAttribute("class", "btn btn-light");
-      setAttribute("id", spreadBtnId_2);
-      setAttribute("onclick", "openCalc(this.id)");
-      innerHTML = events[i].team2_spreads.price;
-    }
+    spreadBtnRow_1.setAttribute("style", "button");
+    spreadBtnRow_1.setAttribute("class", "btn btn-light");
+    spreadBtnRow_1.setAttribute("id", spreadBtnId_1);
+    spreadBtnRow_1.setAttribute("onclick", "openCalc(this.id)");
+    spreadBtnRow_1.innerHTML = events[i].team1_spreads.price;
+
+    spreadBtnRow_2.setAttribute("style", "button");
+    spreadBtnRow_2.setAttribute("class", "btn btn-light");
+    spreadBtnRow_2.setAttribute("id", spreadBtnId_2);
+    spreadBtnRow_2.setAttribute("onclick", "openCalc(this.id)");
+    spreadBtnRow_2.innerHTML = events[i].team2_spreads.price;
 
     // Append btn to the spread table
     spreadRow_1_col2.appendChild(spreadBtnRow_1);
@@ -312,10 +313,8 @@ async function createCards() {
     let overUnderTable = document.createElement("table");
 
     // Assign attributes to spread tab content
-    with (overUnderContent) {
-      setAttribute("id", overUnderId);
-      setAttribute("class", "tabcontent");
-    }
+    overUnderContent.setAttribute("id", overUnderId);
+    overUnderContent.setAttribute("class", "tabcontent");
     overUnderTable.setAttribute("class", "table");
 
     // Append spread content tabs to each event container
@@ -345,20 +344,17 @@ async function createCards() {
     let overUnderBtnRow_1 = document.createElement("button");
     let overUnderBtnRow_2 = document.createElement("button");
     // Assign attributes to the buttons
-    with (overUnderBtnRow_1) {
-      setAttribute("style", "button");
-      setAttribute("class", "btn btn-light");
-      setAttribute("id", overUnderBtnId_1);
-      setAttribute("onclick", "openCalc(this.id)");
-      innerHTML = events[i].overOdds.price;
-    }
-    with (overUnderBtnRow_2) {
-      setAttribute("style", "button");
-      setAttribute("class", "btn btn-light");
-      setAttribute("id", overUnderBtnId_2);
-      setAttribute("onclick", "openCalc(this.id)");
-      innerHTML = events[i].underOdds.price;
-    }
+    overUnderBtnRow_1.setAttribute("style", "button");
+    overUnderBtnRow_1.setAttribute("class", "btn btn-light");
+    overUnderBtnRow_1.setAttribute("id", overUnderBtnId_1);
+    overUnderBtnRow_1.setAttribute("onclick", "openCalc(this.id)");
+    overUnderBtnRow_1.innerHTML = events[i].overOdds.price;
+
+    overUnderBtnRow_2.setAttribute("style", "button");
+    overUnderBtnRow_2.setAttribute("class", "btn btn-light");
+    overUnderBtnRow_2.setAttribute("id", overUnderBtnId_2);
+    overUnderBtnRow_2.setAttribute("onclick", "openCalc(this.id)");
+    overUnderBtnRow_2.innerHTML = events[i].underOdds.price;
 
     // Append btn to the spread table
     overUnderRow_1_col2.appendChild(overUnderBtnRow_1);
@@ -370,6 +366,7 @@ async function createCards() {
     overUnderRow_1_col1.setAttribute("style", "vertical-align: middle");
     overUnderRow_2_col1.setAttribute("style", "vertical-align: middle");
   }
+  return eventCount;
 }
 
 function openOdds(evt, betting) {
@@ -469,5 +466,5 @@ function clearInputs() {
   toWin.value = "";
 }
 
-createCards();
+// createCards();
 // getOdds();
