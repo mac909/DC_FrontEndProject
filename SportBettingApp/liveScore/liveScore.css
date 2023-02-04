@@ -146,3 +146,44 @@ color: black;
     padding-top: 10px;
 }
 
+.table table-primary{
+
+  display: grid;
+  justify-content: center;
+}
+
+.col {
+
+  display: grid;
+  justify-content: end;
+  align-content: end;
+}
+
+.tablebody {
+
+  display: grid;
+  justify-content: end;
+  align-content: end;
+
+
+}
+
+.td {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  
+
+}
+
+.hometeaming {
+
+  display: grid;
+  justify-content: end;
+  align-content: end;
+
+
+
+}
+
+
