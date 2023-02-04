@@ -19,6 +19,19 @@
 
 //     // will i need to loop around different days to showcase the data collected?
 
+// const options = {
+// 	method: 'GET',
+// 	headers: {
+// 		'X-RapidAPI-Key': 'fa96c64051mshe57b38479c7104bp161232jsn5416a889dc93',
+// 		'X-RapidAPI-Host': 'odds.p.rapidapi.com'
+// 	}
+// };
+
+// fetch('https://odds.p.rapidapi.com/v4/sports/basketball_nba/scores?daysFrom=3', options)
+// 	.then(response => response.json())
+// 	.then(response => console.log(response[0].away_team))
+// 	.catch(err => console.error(err));
+
 const options = {
     method: 'GET',
     url: 'https://odds.p.rapidapi.com/v4/sports/basketball_nba/scores',
@@ -31,13 +44,18 @@ const options = {
 
 fetch('https://odds.p.rapidapi.com/v4/sports/basketball_nba/scores', options)
     .then(response => response.json())
-    .then((response) => {
+    .then((response) => { 
+        console.log(response)
+        
         response.forEach((game) => {
+           
             //  console.log(game.away_team)
             const row = document.createElement("tr")
             const table= document.getElementById("tablebody")
             table.append(row)
-        
+
+
+            
             const  homeTeam = game.home_team.replace(/\s/g, "");
             const awayTeam = game.away_team.replace(/\s/g, "");
             let homeTeamLink = `../assets/${homeTeam}.png`;
@@ -47,8 +65,7 @@ fetch('https://odds.p.rapidapi.com/v4/sports/basketball_nba/scores', options)
              const markup = `
             <td>${game.home_team}<img class="hometeamimg" src="${homeTeamLink}"></td>
             <td>${game.away_team}<img class="awayteamimg" src="${awayTeamLink}"></td>
-            <td>${getDayOfWeek(game.commence_time)}</td>
-            <td>${game.scores}</td>`
+            <td>${(game.commence_time)}</td>`
          
           row.innerHTML=markup
           console.log(game)
