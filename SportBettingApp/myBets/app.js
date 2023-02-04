@@ -3,6 +3,7 @@
 async function getOdds() {
   // Array to store results from the fetch call
   events = [];
+  eventWeather = [];
   // API authenication
   const options = {
     method: "GET",
@@ -78,6 +79,7 @@ async function getOdds() {
         //   overOdds: item.bookmakers[1].markets[2].outcomes[0],
         //   underOdds: item.bookmakers[1].markets[2].outcomes[1]
         // };
+
         if (Object.keys(eventCard).length > 7) {
           events.push(eventCard);
         }
@@ -178,6 +180,45 @@ async function createCards() {
     overUnderTab.setAttribute("class", "tablinks");
     overUnderTab.setAttribute("onclick", overUnderTabId);
     overUnderTab.innerHTML = "Over/Under";
+
+    // Get weather
+    let homeTeamCity = events[i].homeTeam;
+    console.log(homeTeamCity);
+    let homeCity = homeTeamCity.split(" ");
+    console.log(homeCity);
+    let city = "";
+    if (homeCity.length > 2) {
+      city = homeCity[0] + "%20" + homeCity[1];
+      console.log(city);
+    } else {
+      city = homeCity[0];
+    }
+    const url =
+      "https://weatherapi-com.p.rapidapi.com/forecast.json?q=" +
+      city +
+      "&days=1";
+
+    const options = {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": "1289a30327msh1b2f18751dfc20fp149ea3jsn37daa0505acb",
+        "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com",
+      },
+    };
+
+    fetch(url, options)
+      .then((res) => res.json())
+      .then((data) => {
+        let weatherInfo = document.createElement("div");
+        let markup = `
+        <p>Temp: ${data.current.temp_f}</p>
+        <p>Conditions: ${data.current.condition.text}</p>
+        <p>Wind Speed (mph): ${data.current.wind_mph}</p>`;
+
+        eventContainer.appendChild(weatherInfo);
+        weatherInfo.innerHTML = markup;
+      })
+      .catch((err) => console.error("error:" + err));
 
     // Append Tabs to the card
     eventContainer.appendChild(dateTime);
